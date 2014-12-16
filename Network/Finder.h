@@ -1,9 +1,7 @@
 #pragma once
 
+class Finder{
 
-
-class Finder {
-
-    vector<APIServeur>
-
+public:
+    String get(String url);
 };
