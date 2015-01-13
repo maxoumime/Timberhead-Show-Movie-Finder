@@ -1,7 +1,11 @@
 #pragma once
 
+#include <string>
+
+using namespace std;
+
 class Finder{
 
 public:
-    String get(String url);
+    string get(string url);
 };

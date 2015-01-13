@@ -1,5 +1,9 @@
 #pragma once
 
+#include <string>
+
+using namespace std;
+
 class APIServer {
 
 public:
@@ -7,9 +11,9 @@ public:
     ~APIServer(void);
 
 private:
-    String name;        // thetvdb
-    String apiUrl;      //http://thetvdb.com/api/GetSeries.php?seriesname=sherlock
-    String apiKey;      //Clef de l'api
+    string name;        // thetvdb
+    string apiUrl;      //http://thetvdb.com/api/GetSeries.php?seriesname=sherlock
+    string apiKey;      //Clef de l'api
 };
 
 
