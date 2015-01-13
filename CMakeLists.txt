@@ -3,5 +3,10 @@ project(MultithreadDeLaMortOfTheLoveOfTheKissOfTheDeath)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp
+Analyse/Parser Analyse/Personne Analyse/Show
+Network/ApiServer Network/Finder Network/Storage
+Interface/App
+)
+
 add_executable(MultithreadDeLaMortOfTheLoveOfTheKissOfTheDeath ${SOURCE_FILES})
