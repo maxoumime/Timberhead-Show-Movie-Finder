@@ -8,5 +8,6 @@ class Parser {
 
 public:
     Parser();
+    ~Parser();
     static vector<Show> getResults(string words);
 };

@@ -7,10 +7,13 @@ vector<Show> Parser::getResults(string words)
     //Liste des séries correspondant à la recherche
     vector<Show> shows;
 
-
+    return shows;
 
 }
 
 Parser::Parser() {
 
+}
+
+Parser::~Parser() {
 }

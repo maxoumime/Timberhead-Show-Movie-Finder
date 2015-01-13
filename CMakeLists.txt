@@ -1,12 +1,9 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(MultithreadDeLaMortOfTheLoveOfTheKissOfTheDeath)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lcurl")
 set(SOURCE_FILES main.cpp
-Analyse/Parser Analyse/Personne Analyse/Show
-Network/ApiServer Network/Finder Network/Storage
-Interface/App
+Network/ApiServer
 )
 
 add_executable(MultithreadDeLaMortOfTheLoveOfTheKissOfTheDeath ${SOURCE_FILES})
