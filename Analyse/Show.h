@@ -14,16 +14,16 @@ public:
 
 private:
 
-    String title;       // "Sherlock"
-    String plot;        // intrigue
-    String genre;       // "Crime"
-    Strinf year;        // "2010-"
-    String urlPicture;  // Url de l'image
+    string title;       // "Sherlock"
+    string plot;        // intrigue
+    string genre;       // "Crime"
+    string year;        // "2010-"
+    string urlPicture;  // Url de l'image
     int seasonNbr;      //
     bool cancelled;
     vector<Personne> casting;
     int rating;
-    String runTime;     // "90 min"
+    string runTime;     // "90 min"
 
 public:
 

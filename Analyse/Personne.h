@@ -1,5 +1,9 @@
 #pragma once
 
+#include <string>
+
+using namespace std;
+
 enum class EnumRole {Director, Writer, Producer, Assistant, Actor};
 
 
@@ -9,31 +13,28 @@ class Personne
     ~Personne(void);
 
 private:
-    String firstName;
-    String lastName;
+    string firstName;
+    string lastName;
     EnumRole role;
 
 public:
-    Personne(String firstName, String lastName, EnumRole const &role)
+    Personne(string firstName, string lastName, EnumRole const &role)
             : firstName(firstName), lastName(lastName), role(role) {
     }
 
-    Personne() {
-    }
-
-    String getFirstName() const {
+    string getFirstName() const {
         return firstName;
     }
 
-    void setFirstName(String firstName) {
+    void setFirstName(string firstName) {
         Personne::firstName = firstName;
     }
 
-    String getLastName() const {
+    string getLastName() const {
         return lastName;
     }
 
-    void setLastName(String lastName) {
+    void setLastName(string lastName) {
         Personne::lastName = lastName;
     }
 
