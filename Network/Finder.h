@@ -7,5 +7,5 @@ using namespace std;
 class Finder{
 
 public:
-    string get(string url);
+    static string get(string url);
 };

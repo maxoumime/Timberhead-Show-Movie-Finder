@@ -3,7 +3,7 @@ project(MultithreadDeLaMortOfTheLoveOfTheKissOfTheDeath)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lcurl")
 set(SOURCE_FILES main.cpp
-Network/ApiServer
+Network/ApiServer Network/Finder
 )
 
 add_executable(MultithreadDeLaMortOfTheLoveOfTheKissOfTheDeath ${SOURCE_FILES})

@@ -10,7 +10,7 @@ public:
     APIServer(void);
     APIServer(string, string, string);
     ~APIServer(void);
-    string fetch(string);
+    string fetch(string, bool);
 
 private:
     string name;        // thetvdb
