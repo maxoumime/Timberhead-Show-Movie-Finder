@@ -9,15 +9,14 @@ enum class EnumRole {Director, Writer, Producer, Assistant, Actor};
 
 class Personne
 {
-    Personne(void);
-    ~Personne(void);
-
 private:
     string firstName;
     string lastName;
     EnumRole role;
 
 public:
+    Personne(void);
+    ~Personne(void);
     Personne(string firstName, string lastName, EnumRole const &role)
             : firstName(firstName), lastName(lastName), role(role) {
     }

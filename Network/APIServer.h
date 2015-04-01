@@ -1,21 +1,21 @@
 #pragma once
 
+#include <stdio.h>
+#include <iostream>
 #include <string>
-
-using namespace std;
 
 class APIServer {
 
 public:
     APIServer(void);
-    APIServer(string, string, string);
+    APIServer(std::string, std::string, std::string);
     ~APIServer(void);
-    string fetch(string, bool);
+    std::string fetch(std::string, bool);
 
 private:
-    string name;        // thetvdb
-    string apiUrl;      //http://thetvdb.com/api/GetSeries.php?seriesname=sherlock
-    string apiKey;      //Clef de l'api
+    std::string name;        // thetvdb
+    std::string apiUrl;      //http://thetvdb.com/api/GetSeries.php?seriesname=sherlock
+    std::string apiKey;      //Clef de l'api
 };
 
 

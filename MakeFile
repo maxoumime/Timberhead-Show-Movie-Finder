@@ -1,0 +1,78 @@
+## -*- Makefile -*-
+##
+## User: mberthea
+## Time: 1 avr. 2015 13:37:27
+## Makefile created by Oracle Solaris Studio.
+##
+## This file is generated automatically.
+##
+
+
+#### Compiler and tool definitions shared by all build targets #####
+CCC = g++
+CXX = g++
+BASICOPTS = -g
+CCFLAGS = $(BASICOPTS)
+CXXFLAGS = $(BASICOPTS)
+CCADMIN = 
+
+
+# Define the target directories.
+TARGETDIR_TimberHead=GNU-amd64-Windows
+
+
+all: $(TARGETDIR_TimberHead)/TimberHead
+
+## Target: TimberHead
+OBJS_TimberHead =  \
+	$(TARGETDIR_TimberHead)/Analyse\Parser.o \
+	$(TARGETDIR_TimberHead)/Network\ApiServer.o \
+	$(TARGETDIR_TimberHead)/Network\Finder.o \
+	$(TARGETDIR_TimberHead)/main.o
+SYSLIBS_TimberHead = -lpthread 
+USERLIBS_TimberHead = -lcurl $(SYSLIBS_TimberHead) 
+DEPLIBS_TimberHead =   
+LDLIBS_TimberHead = $(USERLIBS_TimberHead)
+
+
+# Link or archive
+$(TARGETDIR_TimberHead)/TimberHead: $(TARGETDIR_TimberHead) $(OBJS_TimberHead) $(DEPLIBS_TimberHead)
+	$(LINK.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ $(OBJS_TimberHead) $(LDLIBS_TimberHead)
+
+
+# Compile source files into .o files
+$(TARGETDIR_TimberHead)/Analyse\Parser.o: $(TARGETDIR_TimberHead) Analyse\Parser.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Analyse\Parser.cpp
+
+$(TARGETDIR_TimberHead)/Network\ApiServer.o: $(TARGETDIR_TimberHead) Network\ApiServer.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Network\ApiServer.cpp
+
+$(TARGETDIR_TimberHead)/Network\Finder.o: $(TARGETDIR_TimberHead) Network\Finder.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Network\Finder.cpp
+
+$(TARGETDIR_TimberHead)/main.o: $(TARGETDIR_TimberHead) main.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ main.cpp
+
+
+
+#### Clean target deletes all generated files ####
+clean:
+	rm -f \
+		$(TARGETDIR_TimberHead)/TimberHead \
+		$(TARGETDIR_TimberHead)/Analyse\Parser.o \
+		$(TARGETDIR_TimberHead)/Network\ApiServer.o \
+		$(TARGETDIR_TimberHead)/Network\Finder.o \
+		$(TARGETDIR_TimberHead)/main.o
+	$(CCADMIN)
+	rm -f -r $(TARGETDIR_TimberHead)
+
+
+# Create the target directory (if needed)
+$(TARGETDIR_TimberHead):
+	mkdir -p $(TARGETDIR_TimberHead)
+
+
+# Enable dependency checking
+.KEEP_STATE:
+.KEEP_STATE_FILE:.make.state.GNU-amd64-Windows
+
