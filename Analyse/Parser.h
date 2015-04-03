@@ -4,10 +4,12 @@
 #include "Show.h"
 #include <string>
 
+using namespace std;
+
 class Parser {
 
 public:
     Parser();
     ~Parser();
-    static vector<Show> getResults(string words);
+    static Show getResults(string words);
 };

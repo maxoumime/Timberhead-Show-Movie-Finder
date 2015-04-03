@@ -1,7 +1,7 @@
 ## -*- Makefile -*-
 ##
 ## User: mberthea
-## Time: 1 avr. 2015 13:37:27
+## Time: 2 avr. 2015 17:05:25
 ## Makefile created by Oracle Solaris Studio.
 ##
 ## This file is generated automatically.
@@ -18,23 +18,20 @@ CCADMIN =
 
 
 # Define the target directories.
-TARGETDIR_TimberHead=GNU-amd64-Windows
+TARGETDIR_TimberHead=GNU-amd64-MacOSX
 
 
 all: $(TARGETDIR_TimberHead)/TimberHead
 
 ## Target: TimberHead
 OBJS_TimberHead =  \
-	$(TARGETDIR_TimberHead)/Analyse\Personne.o \
-	$(TARGETDIR_TimberHead)/Analyse\Show.o \
 	$(TARGETDIR_TimberHead)/Analyse\Parser.o \
 	$(TARGETDIR_TimberHead)/Network\ApiServer.o \
 	$(TARGETDIR_TimberHead)/Network\Finder.o \
 	$(TARGETDIR_TimberHead)/main.o
-SYSLIBS_TimberHead = -lpthread -lcurl
-# USERLIBS_TimberHead = include/tinyxml/tinyxml.h include/tinyxml/tinyxml.cpp include/tinyxml/tinystr.h include/tinyxml/tinystr.cpp $(SYSLIBS_TimberHead) 
-USERLIBS_TimberHead = include/tinyxml2/tinyxml2.h include/tinyxml2/tinyxml2.cpp $(SYSLIBS_TimberHead) 
-DEPLIBS_TimberHead = 
+SYSLIBS_TimberHead = -lpthread 
+USERLIBS_TimberHead = -lcurl $(SYSLIBS_TimberHead) 
+DEPLIBS_TimberHead =   
 LDLIBS_TimberHead = $(USERLIBS_TimberHead)
 
 
@@ -44,13 +41,6 @@ $(TARGETDIR_TimberHead)/TimberHead: $(TARGETDIR_TimberHead) $(OBJS_TimberHead) $
 
 
 # Compile source files into .o files
-
-$(TARGETDIR_TimberHead)/Analyse\Personne.o: $(TARGETDIR_TimberHead) Analyse\Personne.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Analyse\Personne.cpp
-	
-$(TARGETDIR_TimberHead)/Analyse\Show.o: $(TARGETDIR_TimberHead) Analyse\Show.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Analyse\Show.cpp
-
 $(TARGETDIR_TimberHead)/Analyse\Parser.o: $(TARGETDIR_TimberHead) Analyse\Parser.cpp
 	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Analyse\Parser.cpp
 
@@ -68,8 +58,6 @@ $(TARGETDIR_TimberHead)/main.o: $(TARGETDIR_TimberHead) main.cpp
 #### Clean target deletes all generated files ####
 clean:
 	rm -f \
-		$(TARGETDIR_TimberHead)/Analyse\Personne.o
-		$(TARGETDIR_TimberHead)/Analyse\Show.o
 		$(TARGETDIR_TimberHead)/TimberHead \
 		$(TARGETDIR_TimberHead)/Analyse\Parser.o \
 		$(TARGETDIR_TimberHead)/Network\ApiServer.o \
@@ -86,5 +74,5 @@ $(TARGETDIR_TimberHead):
 
 # Enable dependency checking
 .KEEP_STATE:
-.KEEP_STATE_FILE:.make.state.GNU-amd64-Windows
+.KEEP_STATE_FILE:.make.state.GNU-amd64-MacOSX
 
