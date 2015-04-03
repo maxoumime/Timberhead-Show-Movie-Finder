@@ -18,11 +18,9 @@ APIServer::~APIServer() {
 
 string APIServer::fetch(string path, bool withKey){
 
-    string results = "";
 
     if(withKey)
-        results = Finder::get(this->apiUrl+this->apiKey+"/"+path);
-    else results = Finder::get(this->apiUrl+path);
+        return Finder::get(this->apiUrl+this->apiKey+"/"+path);
+    else return Finder::get(this->apiUrl+path);
 
-    return results;
 }

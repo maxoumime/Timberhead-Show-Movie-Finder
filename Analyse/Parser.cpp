@@ -2,28 +2,65 @@
 #include "../include/tinyxml2/tinyxml2.h"
 
 //Méthode globale permettant la récupération des resultats d'une recherche
-Show Parser::getResults(string words)
-{
-    //Liste des séries correspondant à la recherche
-    tinyxml2::XMLDocument doc;
-    doc.Parse((const char*)words.c_str());
-
-    tinyxml2::XMLElement *elem = doc.FirstChildElement()->ToElement();
-    
+Show Parser::getResults(string xml)
+{    
+   
     Show show;
     
-    show.setTitle( elem->Attribute("title") );
-    show.setPlot( elem->Attribute("plot") );
-    show.setGenre( elem->Attribute("genre") );
-    show.setYear( elem->Attribute("year") );
-    show.setUrlPicture( elem->Attribute("poster") );
+    //Liste des séries correspondant à la recherche
+    tinyxml2::XMLDocument doc;
+    doc.Parse((const char*)xml.c_str());
+
+    //BALISE <xml>
+    tinyxml2::XMLNode * pRootXml = doc.FirstChild();    
+
+    if (pRootXml == nullptr) return show;
+
+    //BALISE <root>
+    tinyxml2::XMLNode * pRoot = pRootXml->NextSibling();    
     
-    string actors = elem->Attribute("casting");
+    //Suivant la réponse positive ou négative, IMDB ne répond pas le <xml>
+    tinyxml2::XMLElement* rootResponseElement;
+    if(pRootXml->ToElement() != nullptr)
+        rootResponseElement = pRootXml->ToElement();
+    else rootResponseElement = pRoot->ToElement();
+    
+    string response = rootResponseElement->Attribute("response");
+    if (pRoot == nullptr || response == "False") return show;
+
+    //BALISE <movie>
+    tinyxml2::XMLElement * eMovie = pRoot->FirstChild()->ToElement();
+    
+    if (eMovie == nullptr) return show;
+    
+    string title = eMovie->Attribute("title");
+    show.setTitle(title);
+    
+    string plot = eMovie->Attribute("plot");
+    show.setPlot(plot);
+    
+    string genre = eMovie->Attribute("genre");
+    show.setGenre(genre);
+    
+    string year = eMovie->Attribute("year");
+    show.setYear(year);
+    
+    string urlPicture = eMovie->Attribute("poster");
+    show.setUrlPicture(urlPicture);
+    
+
+    /*
+    show.setPlot( eMovie->Attribute("plot") );
+    show.setGenre( eMovie->Attribute("genre") );
+    show.setYear( eMovie->Attribute("year") );
+    show.setUrlPicture( eMovie->Attribute("poster") );
+   
     
 //    show.setCasting(  );
-    if(elem->Attribute("rating") != "N/A"){
-        show.setRating(atoi(elem->Attribute("rating")));
+    if(eMovie->Attribute("rating") != "N/A"){
+        show.setRating(atoi(eMovie->Attribute("rating")));
     }
+     */
     
     
     return show;

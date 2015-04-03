@@ -54,11 +54,11 @@ void Show::setTitle(string title){
 }
 
 void Show::setPlot(string plot){
-    this->title = title;
+    this->plot = plot;
 }
 
 void Show::setGenre(string genre){
-    this->title = title;
+    this->genre = genre;
 }
 
 void Show::setYear(string year){

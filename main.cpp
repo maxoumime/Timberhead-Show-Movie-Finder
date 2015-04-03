@@ -1,27 +1,26 @@
 #include <iostream>
 #include <stdio.h>
 #include "Network/APIServer.h"
+#include "Analyse/Parser.h"
 
 using namespace std;
 
 int main() {
 
-    APIServer apiTheTVDB = APIServer("TheTVDB","BC89D32369F3103D","http://thetvdb.com/api/");
-
-    string resultat = apiTheTVDB.fetch("GetSeries.php?seriesname=Sherlock", false);
-
-    printf("%s\n", resultat.c_str());
-    printf("\n\n---------------------\n\n");
-
-    resultat = apiTheTVDB.fetch("languages.xml", true);
-
-    printf("%s\n", resultat.c_str());
-    printf("\n\n---------------------\n\n");
-
     APIServer apiIMDB = APIServer("IMDB", "", "http://omdbapi.com/");
-    resultat = apiIMDB.fetch("?t=Sherlock&r=xml", false);
-
-    printf("%s\n", resultat.c_str());
-
+    
+    string serie;
+    cout << "Entrez le nom de la série recherchée" << endl;
+    cin >> serie;
+    
+    string result = apiIMDB.fetch("?t="+serie+"&r=xml", false);
+        
+    Show show = Parser::getResults(result);
+    
+    cout << "Titre: " << show.getTitle() << endl;
+    cout << "Résumé: " << show.getPlot() << endl;
+    cout << "Genre: " << show.getGenre() << endl;
+    cout << "Year: " << show.getYear() << endl;
+    
     return 0;
 }

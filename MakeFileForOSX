@@ -1,0 +1,88 @@
+## -*- Makefile -*-
+##
+## User: maxoumime
+## Time: 3 avr. 2015 19:54:36
+## Makefile created by Oracle Solaris Studio.
+##
+## This file is generated automatically.
+##
+
+
+#### Compiler and tool definitions shared by all build targets #####
+CCC = /usr/local/bin/g++-4.9
+CXX = /usr/local/bin/g++-4.9
+BASICOPTS = -g -m64 -std=c++11
+CCFLAGS = $(BASICOPTS)
+CXXFLAGS = $(BASICOPTS)
+CCADMIN = 
+
+
+# Define the target directories.
+TARGETDIR_Timberhead=GNU-x86_64-MacOSX
+
+
+all: $(TARGETDIR_Timberhead)/Timberhead
+
+## Target: Timberhead
+OBJS_Timberhead =  \
+	$(TARGETDIR_Timberhead)/main.o \
+	$(TARGETDIR_Timberhead)/Parser.o \
+	$(TARGETDIR_Timberhead)/Personne.o \
+	$(TARGETDIR_Timberhead)/Show.o \
+	$(TARGETDIR_Timberhead)/ApiServer.o \
+	$(TARGETDIR_Timberhead)/Finder.o
+SYSLIBS_Timberhead = -lpthread -lcurl 
+USERLIBS_Timberhead = include/tinyxml2/tinyxml2.h include/tinyxml2/tinyxml2.cpp $(SYSLIBS_Timberhead) 
+DEPLIBS_Timberhead =  
+LDLIBS_Timberhead = $(USERLIBS_Timberhead)
+
+
+# Link or archive
+$(TARGETDIR_Timberhead)/Timberhead: $(TARGETDIR_Timberhead) $(OBJS_Timberhead) $(DEPLIBS_Timberhead)
+	$(LINK.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ $(OBJS_Timberhead) $(LDLIBS_Timberhead)
+
+
+# Compile source files into .o files
+$(TARGETDIR_Timberhead)/main.o: $(TARGETDIR_Timberhead) main.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ main.cpp
+
+$(TARGETDIR_Timberhead)/Parser.o: $(TARGETDIR_Timberhead) Analyse/Parser.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Parser.cpp
+
+$(TARGETDIR_Timberhead)/Personne.o: $(TARGETDIR_Timberhead) Analyse/Personne.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Personne.cpp
+
+$(TARGETDIR_Timberhead)/Show.o: $(TARGETDIR_Timberhead) Analyse/Show.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Show.cpp
+
+$(TARGETDIR_Timberhead)/ApiServer.o: $(TARGETDIR_Timberhead) Network/ApiServer.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Network/ApiServer.cpp
+
+$(TARGETDIR_Timberhead)/Finder.o: $(TARGETDIR_Timberhead) Network/Finder.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Network/Finder.cpp
+
+
+
+#### Clean target deletes all generated files ####
+clean:
+	rm -f \
+		$(TARGETDIR_Timberhead)/Timberhead \
+		$(TARGETDIR_Timberhead)/main.o \
+		$(TARGETDIR_Timberhead)/Parser.o \
+		$(TARGETDIR_Timberhead)/Personne.o \
+		$(TARGETDIR_Timberhead)/Show.o \
+		$(TARGETDIR_Timberhead)/ApiServer.o \
+		$(TARGETDIR_Timberhead)/Finder.o
+	$(CCADMIN)
+	rm -f -r $(TARGETDIR_Timberhead)
+
+
+# Create the target directory (if needed)
+$(TARGETDIR_Timberhead):
+	mkdir -p $(TARGETDIR_Timberhead)
+
+
+# Enable dependency checking
+.KEEP_STATE:
+.KEEP_STATE_FILE:.make.state.GNU-x86_64-MacOSX
+

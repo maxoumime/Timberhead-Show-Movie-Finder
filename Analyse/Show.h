@@ -11,8 +11,7 @@ class Show
 public:
     Show(void);
     ~Show(void);
-    
-    
+        
     string getTitle();
     string getPlot();
     string getGenre();
