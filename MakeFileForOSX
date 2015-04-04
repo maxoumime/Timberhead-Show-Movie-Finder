@@ -27,6 +27,8 @@ all: $(TARGETDIR_Timberhead)/Timberhead
 OBJS_Timberhead =  \
 	$(TARGETDIR_Timberhead)/main.o \
 	$(TARGETDIR_Timberhead)/Parser.o \
+	$(TARGETDIR_Timberhead)/ParserIMDB.o \
+	$(TARGETDIR_Timberhead)/ParserTVDB.o \
 	$(TARGETDIR_Timberhead)/Personne.o \
 	$(TARGETDIR_Timberhead)/Show.o \
 	$(TARGETDIR_Timberhead)/ApiServer.o \
@@ -48,6 +50,12 @@ $(TARGETDIR_Timberhead)/main.o: $(TARGETDIR_Timberhead) main.cpp
 
 $(TARGETDIR_Timberhead)/Parser.o: $(TARGETDIR_Timberhead) Analyse/Parser.cpp
 	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Parser.cpp
+	
+$(TARGETDIR_Timberhead)/ParserIMDB.o: $(TARGETDIR_Timberhead) Analyse/ParserIMDB.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/ParserIMDB.cpp
+	
+$(TARGETDIR_Timberhead)/ParserTVDB.o: $(TARGETDIR_Timberhead) Analyse/ParserTVDB.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/ParserTVDB.cpp
 
 $(TARGETDIR_Timberhead)/Personne.o: $(TARGETDIR_Timberhead) Analyse/Personne.cpp
 	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Personne.cpp
@@ -69,6 +77,8 @@ clean:
 		$(TARGETDIR_Timberhead)/Timberhead \
 		$(TARGETDIR_Timberhead)/main.o \
 		$(TARGETDIR_Timberhead)/Parser.o \
+		$(TARGETDIR_Timberhead)/ParserIMDB.o \
+		$(TARGETDIR_Timberhead)/ParserTVDB.o \
 		$(TARGETDIR_Timberhead)/Personne.o \
 		$(TARGETDIR_Timberhead)/Show.o \
 		$(TARGETDIR_Timberhead)/ApiServer.o \

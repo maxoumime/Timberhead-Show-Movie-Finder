@@ -1,26 +1,32 @@
 #include <iostream>
 #include <stdio.h>
 #include "Network/APIServer.h"
-#include "Analyse/Parser.h"
+#include "Analyse/ParserIMDB.h"
+#include "Analyse/ParserTVDB.h"
 
 using namespace std;
 
 int main() {
 
-    APIServer apiIMDB = APIServer("IMDB", "", "http://omdbapi.com/");
+    APIServer apiIMDB("IMDB", "http://omdbapi.com/", "");
+    
+    APIServer apiTVDB("TheTVDB", "http://thetvdb.com/api/", "BC89D32369F3103D");
     
     string serie;
     cout << "Entrez le nom de la série recherchée" << endl;
-    cin >> serie;
+    getline(cin, serie);
     
-    string result = apiIMDB.fetch("?t="+serie+"&r=xml", false);
+    //Remplacement des ' ' par '+'
+    for(string::iterator it = serie.begin(); it != serie.end(); ++it)
+        if(*it == ' ')
+            *it = '+';
         
-    Show show = Parser::getResults(result);
+    //string result = apiIMDB.fetch("?t="+serie+"&r=xml", false);
+    string result = apiTVDB.fetch("GetSeries.php?seriesname="+serie, false);
+          
+    Show show = ParserTVDB::parseShow(result);
     
-    cout << "Titre: " << show.getTitle() << endl;
-    cout << "Résumé: " << show.getPlot() << endl;
-    cout << "Genre: " << show.getGenre() << endl;
-    cout << "Year: " << show.getYear() << endl;
+    cout << show.toString() << endl;
     
     return 0;
 }

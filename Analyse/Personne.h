@@ -4,24 +4,27 @@
 
 using namespace std;
 
-enum class EnumRole {Director, Writer, Producer, Assistant, Actor};
+namespace Role{
+    enum EnumRole {Director = 0, Writer, Producer, Assistant, Actor, SIZE};
+    static const char* RolesString[EnumRole::SIZE] = { "Directeur", "Scénariste", "Producteur", "Assistant", "Acteur" };
 
+}
 
 class Personne
 {
 private:
     string firstName;
     string lastName;
-    EnumRole role;
+    Role::EnumRole role;
 
 public:
     Personne(void);
     ~Personne(void);
-    Personne(string firstName, string lastName, EnumRole const &role)
+    Personne(string firstName, string lastName, Role::EnumRole const &role)
             : firstName(firstName), lastName(lastName), role(role) {
     }
 
-    string getFirstName() const {
+    string getFirstName() {
         return firstName;
     }
 
@@ -29,7 +32,7 @@ public:
         Personne::firstName = firstName;
     }
 
-    string getLastName() const {
+    string getLastName() {
         return lastName;
     }
 
@@ -37,12 +40,16 @@ public:
         Personne::lastName = lastName;
     }
 
-    EnumRole const &getRole() const {
+    Role::EnumRole const &getRole() const {
         return role;
     }
 
-    void setRole(EnumRole const &role) {
+    void setRole(Role::EnumRole const &role) {
         Personne::role = role;
+    }
+    
+    string toString(){
+        
     }
 
 };

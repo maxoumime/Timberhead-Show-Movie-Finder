@@ -1,13 +1,9 @@
 #include "APIServer.h"
 #include "Finder.h"
 
-APIServer::APIServer() {
-    this->name = "TheTVDB";
-    this->apiKey = "BC89D32369F3103D";
-    this->apiUrl = "http://thetvdb.com/api/";
-}
+APIServer::APIServer() {}
 
-APIServer::APIServer(string _name, string _apiKey, string _apiUrl) {
+APIServer::APIServer(string _name, string _apiUrl, string _apiKey) {
     this->name = _name;
     this->apiKey = _apiKey;
     this->apiUrl = _apiUrl;

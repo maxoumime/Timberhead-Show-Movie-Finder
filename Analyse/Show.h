@@ -33,6 +33,8 @@ public:
     void setCasting(vector<Personne>);
     void setRating(int);
     void setRunTime(string);
+    
+    string toString();
 
 private:
 

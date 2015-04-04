@@ -1,75 +1,37 @@
 #include "Parser.h"
-#include "../include/tinyxml2/tinyxml2.h"
 
-//Méthode globale permettant la récupération des resultats d'une recherche
-Show Parser::getResults(string xml)
-{    
-   
-    Show show;
-    
-    //Liste des séries correspondant à la recherche
-    tinyxml2::XMLDocument doc;
-    doc.Parse((const char*)xml.c_str());
+Parser::Parser(){}
 
-    //BALISE <xml>
-    tinyxml2::XMLNode * pRootXml = doc.FirstChild();    
+Parser::~Parser(){}
 
-    if (pRootXml == nullptr) return show;
+vector<string> Parser::split(const string &s, char delim, vector<string> &elems) {
+    stringstream ss(s);
+    string item;
+    while (getline(ss, item, delim))
+        elems.push_back(item);
+    
+    return elems;
+}
 
-    //BALISE <root>
-    tinyxml2::XMLNode * pRoot = pRootXml->NextSibling();    
-    
-    //Suivant la réponse positive ou négative, IMDB ne répond pas le <xml>
-    tinyxml2::XMLElement* rootResponseElement;
-    if(pRootXml->ToElement() != nullptr)
-        rootResponseElement = pRootXml->ToElement();
-    else rootResponseElement = pRoot->ToElement();
-    
-    string response = rootResponseElement->Attribute("response");
-    if (pRoot == nullptr || response == "False") return show;
 
-    //BALISE <movie>
-    tinyxml2::XMLElement * eMovie = pRoot->FirstChild()->ToElement();
+vector<string> Parser::split(const string &s, char delim) {
+    vector<string> elems;
+    split(s, delim, elems);
+    return elems;
+}
     
-    if (eMovie == nullptr) return show;
-    
-    string title = eMovie->Attribute("title");
-    show.setTitle(title);
-    
-    string plot = eMovie->Attribute("plot");
-    show.setPlot(plot);
-    
-    string genre = eMovie->Attribute("genre");
-    show.setGenre(genre);
-    
-    string year = eMovie->Attribute("year");
-    show.setYear(year);
-    
-    string urlPicture = eMovie->Attribute("poster");
-    show.setUrlPicture(urlPicture);
-    
+vector<Personne> Parser::getPersonnes(string names, Role::EnumRole role){
+    vector<string> nomsVectorString = split(names.c_str(), ',');
+    vector<Personne> personnes;
+    for (auto &personneString : nomsVectorString){  
 
-    /*
-    show.setPlot( eMovie->Attribute("plot") );
-    show.setGenre( eMovie->Attribute("genre") );
-    show.setYear( eMovie->Attribute("year") );
-    show.setUrlPicture( eMovie->Attribute("poster") );
-   
-    
-//    show.setCasting(  );
-    if(eMovie->Attribute("rating") != "N/A"){
-        show.setRating(atoi(eMovie->Attribute("rating")));
+        if(personneString[0] == ' ')
+            personneString = personneString.erase(0, 1);
+
+        vector<string> nom = split(personneString, ' ');
+        Personne personne(nom.at(0), nom.at(1), role);
+        personnes.push_back(personne);
     }
-     */
     
-    
-    return show;
-
-}
-
-Parser::Parser() {
-
-}
-
-Parser::~Parser() {
+    return personnes;
 }

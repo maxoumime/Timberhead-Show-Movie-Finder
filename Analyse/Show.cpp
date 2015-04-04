@@ -8,6 +8,26 @@ Show::~Show(){
     
 }
 
+string Show::toString(){
+    
+    string retour = "";
+    
+    retour = retour + "Titre: " + this->title + "\n";
+    retour = retour + "Résumé: " + this->plot + "\n";
+    retour = retour + "Genre: " + this->genre + "\n";
+    retour = retour + "Année: " + this->year + "\n";
+    retour = retour + "Note: " + to_string(this->rating) + "\n"; 
+
+    retour = retour + "Casting: " + "\n";
+    
+    for(Personne &personne : this->casting){
+        retour += "\t" + personne.getFirstName() + " " + personne.getLastName()
+                + " : " + Role::RolesString[personne.getRole()] + "\n";
+    }
+    
+    return retour;
+}
+
 string Show::getTitle(){
     return title;
 }
