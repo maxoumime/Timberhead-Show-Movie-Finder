@@ -24,11 +24,31 @@ Show ParserTVDB::parseShow(string xml)
     
     if(eSeries == nullptr) return show;
     
-    string title = eSeries->FirstChildElement("SeriesName")->GetText();
-    show.setTitle(title);
+    tinyxml2::XMLElement* titleElement = eSeries->FirstChildElement("SeriesName");
     
-    string plot = eSeries->FirstChildElement("Overview")->GetText();
-    show.setPlot(plot);
+    if(titleElement != nullptr){
+        string title = titleElement->GetText();
+        show.setTitle(title);
+    }
+    
+    tinyxml2::XMLElement* plotElement = eSeries->FirstChildElement("Overview");
+    if(plotElement != nullptr){
+        string plot = plotElement->GetText();
+        show.setPlot(plot);
+    }
+    
+    tinyxml2::XMLElement* yearElement = eSeries->FirstChildElement("FirstAired");
+    if(yearElement != nullptr){
+        string year = yearElement->GetText();
+        year.resize(4);
+        show.setYear(year);
+    }
+    
+    tinyxml2::XMLElement* channelElement = eSeries->FirstChildElement("Network");
+    if(channelElement != nullptr){
+        string channel = channelElement->GetText();
+        show.setChannel(channel);
+    }
     
     return show;
 

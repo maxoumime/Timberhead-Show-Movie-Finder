@@ -16,7 +16,9 @@ string Show::toString(){
     retour = retour + "Résumé: " + this->plot + "\n";
     retour = retour + "Genre: " + this->genre + "\n";
     retour = retour + "Année: " + this->year + "\n";
+    retour = retour + "Durée: " + this->runTime + "\n";
     retour = retour + "Note: " + to_string(this->rating) + "\n"; 
+    retour = retour + "Chaine: " + this->channel + "\n";
 
     retour = retour + "Casting: " + "\n";
     
@@ -26,6 +28,63 @@ string Show::toString(){
     }
     
     return retour;
+}
+
+Show Show::mergeShows(Show show1, Show show2){
+    
+    //On part du principe que le show 1 est la référence
+    
+    if(show1.getTitle().empty())
+        show1.setTitle( show2.getTitle() );
+    
+    if(show1.getPlot().empty())
+        show1.setPlot( show2.getPlot() );
+    
+    if(show1.getChannel().empty())
+        show1.setChannel( show2.getChannel() );
+    
+    if(show1.getGenre().empty())
+        show1.setGenre( show2.getGenre() );
+        
+    if(show1.getRating() == 0)
+        show1.setRating( show2.getRating() );
+    
+    if(show1.getRunTime().empty())
+        show1.setRunTime( show2.getRunTime() );
+
+    if(show1.getUrlPicture().empty())
+        show1.setUrlPicture( show2.getUrlPicture() );
+    
+    if(show1.getYear().empty())
+        show1.setYear( show2.getYear() );
+    
+    if(show1.getCasting().empty())
+        show1.setCasting( show2.getCasting() );
+    else if(!show2.getCasting().empty()){
+        
+        vector<Personne> vCasting1 = show1.getCasting();
+        vector<Personne> vCasting2 = show2.getCasting();
+
+        vCasting1.insert(vCasting1.end(), vCasting2.begin(), vCasting2.end());
+        
+        vector<Personne> vCastingMerged;
+        vector<string> vCastingMergedComparaison;
+        for(Personne &personneFusion : vCasting1){
+
+            string comparaisonPersonne = personneFusion.getFirstName()+":"
+                    + personneFusion.getLastName()+":"
+                    + Role::RolesString[personneFusion.getRole()];
+            
+            if(std::find(vCastingMergedComparaison.begin(), vCastingMergedComparaison.end(), comparaisonPersonne) == vCastingMergedComparaison.end()){
+                vCastingMerged.push_back(personneFusion);
+                vCastingMergedComparaison.push_back(comparaisonPersonne);
+            }
+        }
+        
+        show1.setCasting(vCastingMerged);
+    }
+    
+    return show1;
 }
 
 string Show::getTitle(){
@@ -48,12 +107,8 @@ string Show::getUrlPicture(){
     return urlPicture;
 }
 
-int Show::getSeasonNbr(){
-    return seasonNbr;
-}
-
-bool Show::isCancelled(){
-    return cancelled;
+string Show::getChannel(){
+    return channel;
 }
 
 vector<Personne> Show::getCasting(){
@@ -89,12 +144,8 @@ void Show::setUrlPicture(string urlPicture){
     this->urlPicture = urlPicture;
 }
 
-void Show::setSeasonNbr(int seasonNbr){
-    this->seasonNbr = seasonNbr;
-}
-
-void Show::setCancelled(bool cancelled){
-    this->cancelled = cancelled;
+void Show::setChannel(string channel){
+    this->channel = channel;
 }
 
 void Show::setCasting(vector<Personne> casting){
@@ -106,6 +157,6 @@ void Show::setRating(int rating){
 }
 
 void Show::setRunTime(string runtime){
-    this->runTime = runTime;
+    this->runTime = runtime;
 }
 

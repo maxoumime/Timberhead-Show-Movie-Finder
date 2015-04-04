@@ -81,6 +81,11 @@ Show ParserIMDB::parseShow(string xml)
         show.setRating(atoi(rating.c_str()));
     }  
     
+    string runtime = eMovie->Attribute("runtime");
+    if(runtime != "N/A"){
+        show.setRunTime(runtime);
+    } 
+    
     return show;
 
 }

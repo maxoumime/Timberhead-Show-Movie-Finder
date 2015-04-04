@@ -2,7 +2,9 @@
 
 #include <vector>
 #include <iterator>
+#include <algorithm>
 #include "Personne.h"
+#include <iostream>
 
 using namespace std;
 
@@ -17,8 +19,7 @@ public:
     string getGenre();
     string getYear();
     string getUrlPicture();
-    int getSeasonNbr();
-    bool isCancelled();
+    string getChannel();
     vector<Personne> getCasting();
     int getRating();
     string getRunTime();
@@ -28,13 +29,13 @@ public:
     void setGenre(string);
     void setYear(string);
     void setUrlPicture(string);
-    void setSeasonNbr(int);
-    void setCancelled(bool);
+    void setChannel(string);
     void setCasting(vector<Personne>);
     void setRating(int);
     void setRunTime(string);
     
     string toString();
+    static Show mergeShows(Show, Show);
 
 private:
 
@@ -43,8 +44,7 @@ private:
     string genre;       // "Crime"
     string year;        // "2010-"
     string urlPicture;  // Url de l'image
-    int seasonNbr;      //
-    bool cancelled;
+    string channel;     // Chaine de diffusion de la série
     vector<Personne> casting;
     int rating;
     string runTime;     // "90 min"

@@ -9,7 +9,6 @@ using namespace std;
 int main() {
 
     APIServer apiIMDB("IMDB", "http://omdbapi.com/", "");
-    
     APIServer apiTVDB("TheTVDB", "http://thetvdb.com/api/", "BC89D32369F3103D");
     
     string serie;
@@ -21,10 +20,13 @@ int main() {
         if(*it == ' ')
             *it = '+';
         
-    //string result = apiIMDB.fetch("?t="+serie+"&r=xml", false);
-    string result = apiTVDB.fetch("GetSeries.php?seriesname="+serie, false);
+    string resultIMDB = apiIMDB.fetch("?t="+serie+"&r=xml", false);
+    string resultTVDB = apiTVDB.fetch("GetSeries.php?seriesname="+serie, false);
           
-    Show show = ParserTVDB::parseShow(result);
+    Show showIMDB = ParserIMDB::parseShow(resultIMDB);
+    Show showTVDB = ParserTVDB::parseShow(resultTVDB);
+    
+    Show show = Show::mergeShows(showIMDB, showTVDB);
     
     cout << show.toString() << endl;
     
