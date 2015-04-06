@@ -26,6 +26,7 @@ all: $(TARGETDIR_Timberhead)/Timberhead
 ## Target: Timberhead
 OBJS_Timberhead =  \
 	$(TARGETDIR_Timberhead)/main.o \
+	$(TARGETDIR_Timberhead)/App.o \
 	$(TARGETDIR_Timberhead)/Parser.o \
 	$(TARGETDIR_Timberhead)/ParserIMDB.o \
 	$(TARGETDIR_Timberhead)/ParserTVDB.o \
@@ -49,6 +50,9 @@ $(TARGETDIR_Timberhead)/Timberhead: $(TARGETDIR_Timberhead) $(OBJS_Timberhead) $
 # Compile source files into .o files
 $(TARGETDIR_Timberhead)/main.o: $(TARGETDIR_Timberhead) main.cpp
 	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ main.cpp
+
+$(TARGETDIR_Timberhead)/App.o: $(TARGETDIR_Timberhead) Interface/App.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Interface/App.cpp
 
 $(TARGETDIR_Timberhead)/Parser.o: $(TARGETDIR_Timberhead) Analyse/Parser.cpp
 	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Parser.cpp
@@ -81,6 +85,7 @@ clean:
 	rm -f \
 		$(TARGETDIR_Timberhead)/Timberhead \
 		$(TARGETDIR_Timberhead)/main.o \
+		$(TARGETDIR_Timberhead)/App.o \
 		$(TARGETDIR_Timberhead)/Parser.o \
 		$(TARGETDIR_Timberhead)/ParserIMDB.o \
 		$(TARGETDIR_Timberhead)/ParserTVDB.o \

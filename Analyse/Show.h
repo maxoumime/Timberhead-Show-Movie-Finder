@@ -37,6 +37,7 @@ public:
     
     string toString();
     static Show mergeShows(Show, Show);
+    bool isNull();
 
 private:
 

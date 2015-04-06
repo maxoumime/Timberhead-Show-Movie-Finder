@@ -1,18 +1,9 @@
 #include "Show.h"
 
-string int_to_string(int input){
-    
-    ostringstream ss;
-    ss << input;
-    return ss.str();
-}
-
 Show::Show(){
-    
 }
 
-Show::~Show(){
-    
+Show::~Show(){    
 }
 
 string Show::toString(){
@@ -24,7 +15,7 @@ string Show::toString(){
     retour = retour + "Genre: " + this->genre + "\n";
     retour = retour + "Année: " + this->year + "\n";
     retour = retour + "Durée: " + this->runTime + "\n";
-    retour = retour + "Note: " + int_to_string(this->rating) + "/10" + "\n"; 
+    //retour = retour + "Note: " + int_to_string(this->rating) + "/10" + "\n"; 
     retour = retour + "Chaine: " + this->channel + "\n";
 
     retour = retour + "Casting: " + "\n";
@@ -35,6 +26,16 @@ string Show::toString(){
     }
     
     return retour;
+}
+
+bool Show::isNull(){
+    if((this->title).size() == 0)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
 }
 
 Show Show::mergeShows(Show show1, Show show2){

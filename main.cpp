@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <functional>
 #include <future>
+#include "Interface/App.h"
 #include "Network/APIServer.h"
 #include "Analyse/ParserIMDB.h"
 #include "Analyse/ParserTVDB.h"
@@ -9,26 +10,31 @@
 
 using namespace std;
 
-int main(int argc, char **argv) {
+int runSearch()
+{
+    string serie = App::getRequest();
 
-    string serie;
-    cout << "Entrez le nom de la série recherchée" << endl;
-    getline(cin, serie);
-    
     //Remplacement des ' ' par '+'
-    for(string::iterator it = serie.begin(); it != serie.end(); ++it)
+    for(string::iterator it = serie.begin(); it != serie.end(); ++it){
         if(*it == ' ')
             *it = '+';
-              
-    
+    }    
     promise<Show> promiseShow;
     future<Show> futureShow = promiseShow.get_future();
     
-    Search::getShow(serie, &promiseShow);
-        
-    Show show = futureShow.get();
-    
-    cout << show.toString() << endl;
+    Search::getShow(serie, &promiseShow);        
+    Show show = futureShow.get();    
+    App::displayResult(show);  
+    return runSearch();
+}
+
+int main(int argc, char **argv) {
+
+    App::initializeHome();
+    runSearch();
     
     return 0;
 }
+
+
+
