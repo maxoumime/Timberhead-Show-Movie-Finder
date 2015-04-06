@@ -1,8 +1,0 @@
-mkdir -p GNU-x86_64-MacOSX
-/usr/local/bin/g++-4.9 -g -m64 -std=c++11   -c   -o GNU-x86_64-MacOSX/main.o main.cpp
-/usr/local/bin/g++-4.9 -g -m64 -std=c++11   -c   -o GNU-x86_64-MacOSX/Parser.o Analyse/Parser.cpp
-/usr/local/bin/g++-4.9 -g -m64 -std=c++11   -c   -o GNU-x86_64-MacOSX/Personne.o Analyse/Personne.cpp
-/usr/local/bin/g++-4.9 -g -m64 -std=c++11   -c   -o GNU-x86_64-MacOSX/Show.o Analyse/Show.cpp
-/usr/local/bin/g++-4.9 -g -m64 -std=c++11   -c   -o GNU-x86_64-MacOSX/ApiServer.o Network/ApiServer.cpp
-/usr/local/bin/g++-4.9 -g -m64 -std=c++11   -c   -o GNU-x86_64-MacOSX/Finder.o Network/Finder.cpp
-/usr/local/bin/g++-4.9 -g -m64 -std=c++11      -o GNU-x86_64-MacOSX/Timberhead GNU-x86_64-MacOSX/main.o GNU-x86_64-MacOSX/Parser.o GNU-x86_64-MacOSX/Personne.o GNU-x86_64-MacOSX/Show.o GNU-x86_64-MacOSX/ApiServer.o GNU-x86_64-MacOSX/Finder.o include/tinyxml2/tinyxml2.h include/tinyxml2/tinyxml2.cpp -lpthread -lcurl  
