@@ -1,5 +1,12 @@
 #include "Show.h"
 
+string int_to_string(int input){
+    
+    ostringstream ss;
+    ss << input;
+    return ss.str();
+}
+
 Show::Show(){
     
 }
@@ -17,7 +24,7 @@ string Show::toString(){
     retour = retour + "Genre: " + this->genre + "\n";
     retour = retour + "Année: " + this->year + "\n";
     retour = retour + "Durée: " + this->runTime + "\n";
-    retour = retour + "Note: " + to_string(this->rating) + "/10" + "\n"; 
+    retour = retour + "Note: " + int_to_string(this->rating) + "/10" + "\n"; 
     retour = retour + "Chaine: " + this->channel + "\n";
 
     retour = retour + "Casting: " + "\n";
