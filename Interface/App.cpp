@@ -39,7 +39,7 @@ int App::initializeHome() {
 string App::getRequest()
 {
     string serie;
-    cout << "Entrez le nom de la série recherchée : ";
+    cout << "Entrez le nom de la série recherchée (ou Ctrl-C pour quitter): ";
     getline(cin, serie);
     return serie;
 }
