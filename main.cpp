@@ -7,9 +7,11 @@
 #include "Analyse/ParserTVDB.h"
 #include "Thread/Search.h"
 
+#include <windows.h>
+
 using namespace std;
 
-int main() {
+int main(int argc, char **argv) {
 
     string serie;
     cout << "Entrez le nom de la série recherchée" << endl;

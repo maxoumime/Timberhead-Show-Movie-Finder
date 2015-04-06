@@ -1,0 +1,106 @@
+## -*- Makefile -*-
+##
+## User: Maxoumime
+## Time: 6 avr. 2015 14:48:43
+## Makefile created by Oracle Solaris Studio.
+##
+## This file is generated automatically.
+##
+
+
+#### Compiler and tool definitions shared by all build targets #####
+CCC = g++
+CXX = g++
+BASICOPTS = -g -std=c++11
+CCFLAGS = $(BASICOPTS)
+CXXFLAGS = $(BASICOPTS)
+CCADMIN = 
+
+
+# Define the target directories.
+TARGETDIR_TimberHead.exe=GNU-amd64-Windows
+
+
+all: $(TARGETDIR_TimberHead.exe)/TimberHead.exe
+
+## Target: TimberHead.exe
+#CPPFLAGS_TimberHead.exe = \
+	-Iinclude\tinyxml2\tinyxml2.cpp
+	
+OBJS_TimberHead.exe =  \
+	$(TARGETDIR_TimberHead.exe)/Parser.o \
+	$(TARGETDIR_TimberHead.exe)/ParserIMDB.o \
+	$(TARGETDIR_TimberHead.exe)/ParserTVDB.o \
+	$(TARGETDIR_TimberHead.exe)/Personne.o \
+	$(TARGETDIR_TimberHead.exe)/Show.o \
+	$(TARGETDIR_TimberHead.exe)/ApiServer.o \
+	$(TARGETDIR_TimberHead.exe)/Finder.o \
+	$(TARGETDIR_TimberHead.exe)/Search.o \
+	$(TARGETDIR_TimberHead.exe)/main.o
+SYSLIBS_TimberHead.exe = -lpthread -lcurl
+USERLIBS_TimberHead.exe = include\tinyxml2\tinyxml2.h include\tinyxml2\tinyxml2.cpp $(SYSLIBS_TimberHead.exe) 
+DEPLIBS_TimberHead.exe = 
+LDLIBS_TimberHead.exe = $(USERLIBS_TimberHead.exe)
+
+
+# Link or archive
+$(TARGETDIR_TimberHead.exe)/TimberHead.exe: $(TARGETDIR_TimberHead.exe) $(OBJS_TimberHead.exe) $(DEPLIBS_TimberHead.exe)
+	$(LINK.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ $(OBJS_TimberHead.exe) $(LDLIBS_TimberHead.exe)
+
+
+# Compile source files into .o files
+$(TARGETDIR_TimberHead.exe)/Parser.o: $(TARGETDIR_TimberHead.exe) Analyse\Parser.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Analyse\Parser.cpp
+
+$(TARGETDIR_TimberHead.exe)/ParserIMDB.o: $(TARGETDIR_TimberHead.exe) Analyse\ParserIMDB.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Analyse\ParserIMDB.cpp
+
+$(TARGETDIR_TimberHead.exe)/ParserTVDB.o: $(TARGETDIR_TimberHead.exe) Analyse\ParserTVDB.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Analyse\ParserTVDB.cpp
+
+$(TARGETDIR_TimberHead.exe)/Personne.o: $(TARGETDIR_TimberHead.exe) Analyse\Personne.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Analyse\Personne.cpp
+
+$(TARGETDIR_TimberHead.exe)/Show.o: $(TARGETDIR_TimberHead.exe) Analyse\Show.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Analyse\Show.cpp
+
+$(TARGETDIR_TimberHead.exe)/ApiServer.o: $(TARGETDIR_TimberHead.exe) Network\ApiServer.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Network\ApiServer.cpp
+
+$(TARGETDIR_TimberHead.exe)/Finder.o: $(TARGETDIR_TimberHead.exe) Network\Finder.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Network\Finder.cpp
+
+$(TARGETDIR_TimberHead.exe)/Search.o: $(TARGETDIR_TimberHead.exe) Thread\Search.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ Thread\Search.cpp
+
+$(TARGETDIR_TimberHead.exe)/main.o: $(TARGETDIR_TimberHead.exe) main.cpp
+	$(COMPILE.cc) $(CCFLAGS_TimberHead.exe) $(CPPFLAGS_TimberHead.exe) -o $@ main.cpp
+
+
+
+#### Clean target deletes all generated files ####
+clean:
+	rm -f \
+		$(TARGETDIR_TimberHead.exe)/TimberHead.exe \
+		$(TARGETDIR_TimberHead.exe)/Parser.o \
+		$(TARGETDIR_TimberHead.exe)/ParserIMDB.o \
+		$(TARGETDIR_TimberHead.exe)/ParserTVDB.o \
+		$(TARGETDIR_TimberHead.exe)/Personne.o \
+		$(TARGETDIR_TimberHead.exe)/Show.o \
+		$(TARGETDIR_TimberHead.exe)/ApiServer.o \
+		$(TARGETDIR_TimberHead.exe)/Finder.o \
+		$(TARGETDIR_TimberHead.exe)/Search.o \
+		$(TARGETDIR_TimberHead.exe)/main.o
+	$(CCADMIN)
+	rm -f -r $(TARGETDIR_TimberHead.exe)
+
+
+# Create the target directory (if needed)
+$(TARGETDIR_TimberHead.exe):
+	mkdir -p $(TARGETDIR_TimberHead.exe)
+
+
+# Enable dependency checking
+.KEEP_STATE:
+.KEEP_STATE_FILE:.make.state.GNU-amd64-Windows
+
