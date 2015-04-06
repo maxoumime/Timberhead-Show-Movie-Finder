@@ -1,5 +1,4 @@
 #include "ParserIMDB.h"
-#include "../include/tinyxml2/tinyxml2.h"
 
 //Méthode globale permettant la récupération des resultats d'une recherche
 Show ParserIMDB::parseShow(string xml)

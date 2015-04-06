@@ -3,19 +3,24 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <future>
+#include <thread>
+#include "../Analyse/Parser.h"
+#include "Finder.h"
 
 class APIServer {
 
 public:
     APIServer(void);
-    APIServer(std::string, std::string, std::string);
+    APIServer(std::string, std::string, Parser*);
     ~APIServer(void);
-    std::string fetch(std::string, bool);
+    static void findShow(APIServer*, std::string, std::promise<Show>*);
+    void findShowThread(std::string, std::promise<Show>*);
 
 private:
-    std::string name;        // thetvdb
-    std::string apiUrl;      //http://thetvdb.com/api/GetSeries.php?seriesname=sherlock
-    std::string apiKey;      //Clef de l'api
+    std::string name;
+    std::string apiUrl;
+    Parser* parser;
 };
 
 

@@ -1,16 +1,16 @@
 #include <iostream>
 #include <stdio.h>
+#include <functional>
+#include <future>
 #include "Network/APIServer.h"
 #include "Analyse/ParserIMDB.h"
 #include "Analyse/ParserTVDB.h"
+#include "Thread/Search.h"
 
 using namespace std;
 
 int main() {
 
-    APIServer apiIMDB("IMDB", "http://omdbapi.com/", "");
-    APIServer apiTVDB("TheTVDB", "http://thetvdb.com/api/", "BC89D32369F3103D");
-    
     string serie;
     cout << "Entrez le nom de la série recherchée" << endl;
     getline(cin, serie);
@@ -19,14 +19,14 @@ int main() {
     for(string::iterator it = serie.begin(); it != serie.end(); ++it)
         if(*it == ' ')
             *it = '+';
-        
-    string resultIMDB = apiIMDB.fetch("?t="+serie+"&r=xml", false);
-    string resultTVDB = apiTVDB.fetch("GetSeries.php?seriesname="+serie, false);
-          
-    Show showIMDB = ParserIMDB::parseShow(resultIMDB);
-    Show showTVDB = ParserTVDB::parseShow(resultTVDB);
+              
     
-    Show show = Show::mergeShows(showIMDB, showTVDB);
+    promise<Show> promiseShow;
+    future<Show> futureShow = promiseShow.get_future();
+    
+    Search::getShow(serie, &promiseShow);
+        
+    Show show = futureShow.get();
     
     cout << show.toString() << endl;
     

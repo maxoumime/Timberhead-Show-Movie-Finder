@@ -14,7 +14,7 @@ public:
     ParserTVDB();
     ParserTVDB(const ParserTVDB& orig);
     virtual ~ParserTVDB();
-    static Show parseShow(string);
+    Show parseShow(string);
 private:
 
 };

@@ -17,7 +17,7 @@ string Show::toString(){
     retour = retour + "Genre: " + this->genre + "\n";
     retour = retour + "Année: " + this->year + "\n";
     retour = retour + "Durée: " + this->runTime + "\n";
-    retour = retour + "Note: " + to_string(this->rating) + "\n"; 
+    retour = retour + "Note: " + to_string(this->rating) + "/10" + "\n"; 
     retour = retour + "Chaine: " + this->channel + "\n";
 
     retour = retour + "Casting: " + "\n";

@@ -32,7 +32,9 @@ OBJS_Timberhead =  \
 	$(TARGETDIR_Timberhead)/Personne.o \
 	$(TARGETDIR_Timberhead)/Show.o \
 	$(TARGETDIR_Timberhead)/ApiServer.o \
-	$(TARGETDIR_Timberhead)/Finder.o
+	$(TARGETDIR_Timberhead)/Finder.o \
+	$(TARGETDIR_Timberhead)/Search.o
+	
 SYSLIBS_Timberhead = -lpthread -lcurl 
 USERLIBS_Timberhead = include/tinyxml2/tinyxml2.h include/tinyxml2/tinyxml2.cpp $(SYSLIBS_Timberhead) 
 DEPLIBS_Timberhead =  
@@ -68,6 +70,9 @@ $(TARGETDIR_Timberhead)/ApiServer.o: $(TARGETDIR_Timberhead) Network/ApiServer.c
 
 $(TARGETDIR_Timberhead)/Finder.o: $(TARGETDIR_Timberhead) Network/Finder.cpp
 	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Network/Finder.cpp
+	
+$(TARGETDIR_Timberhead)/Search.o: $(TARGETDIR_Timberhead) Thread/Search.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Thread/Search.cpp
 
 
 
@@ -82,7 +87,8 @@ clean:
 		$(TARGETDIR_Timberhead)/Personne.o \
 		$(TARGETDIR_Timberhead)/Show.o \
 		$(TARGETDIR_Timberhead)/ApiServer.o \
-		$(TARGETDIR_Timberhead)/Finder.o
+		$(TARGETDIR_Timberhead)/Finder.o \
+		$(TARGETDIR_Timberhead)/Search.o \
 	$(CCADMIN)
 	rm -f -r $(TARGETDIR_Timberhead)
 

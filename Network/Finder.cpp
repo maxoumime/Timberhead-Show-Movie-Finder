@@ -43,7 +43,6 @@ string Finder::get(string url) {
         curl_easy_cleanup(curl);
     }
         
-//    cout << readBuffer << endl;
     
     return readBuffer;
 }

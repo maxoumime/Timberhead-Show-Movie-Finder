@@ -24,13 +24,17 @@ TARGETDIR_TimberHead=GNU-amd64-Windows
 all: $(TARGETDIR_TimberHead)/TimberHead32.exe
 
 ## Target: TimberHead
-OBJS_TimberHead =  \
-	$(TARGETDIR_TimberHead)/Personne.o \
-	$(TARGETDIR_TimberHead)/Show.o \
-	$(TARGETDIR_TimberHead)/Parser.o \
-	$(TARGETDIR_TimberHead)/ApiServer.o \
-	$(TARGETDIR_TimberHead)/Finder.o \
-	$(TARGETDIR_TimberHead)/main.o
+OBJS_Timberhead =  \
+	$(TARGETDIR_Timberhead)/main.o \
+	$(TARGETDIR_Timberhead)/Parser.o \
+	$(TARGETDIR_Timberhead)/ParserIMDB.o \
+	$(TARGETDIR_Timberhead)/ParserTVDB.o \
+	$(TARGETDIR_Timberhead)/Personne.o \
+	$(TARGETDIR_Timberhead)/Show.o \
+	$(TARGETDIR_Timberhead)/ApiServer.o \
+	$(TARGETDIR_Timberhead)/Finder.o \
+	$(TARGETDIR_Timberhead)/Search.o
+	
 SYSLIBS_TimberHead = -lpthread -lcurl
 # USERLIBS_TimberHead = include/tinyxml/tinyxml.h include/tinyxml/tinyxml.cpp include/tinyxml/tinystr.h include/tinyxml/tinystr.cpp $(SYSLIBS_TimberHead) 
 USERLIBS_TimberHead = include/tinyxml2/tinyxml2.h include/tinyxml2/tinyxml2.cpp $(SYSLIBS_TimberHead) 
@@ -44,37 +48,48 @@ $(TARGETDIR_TimberHead)/TimberHead32.exe: $(TARGETDIR_TimberHead) $(OBJS_TimberH
 
 
 # Compile source files into .o files
+$(TARGETDIR_Timberhead)/main.o: $(TARGETDIR_Timberhead) main.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ main.cpp
 
-$(TARGETDIR_TimberHead)/Personne.o: $(TARGETDIR_TimberHead) Analyse/Personne.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Analyse/Personne.cpp
+$(TARGETDIR_Timberhead)/Parser.o: $(TARGETDIR_Timberhead) Analyse/Parser.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Parser.cpp
 	
-$(TARGETDIR_TimberHead)/Show.o: $(TARGETDIR_TimberHead) Analyse/Show.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Analyse/Show.cpp
+$(TARGETDIR_Timberhead)/ParserIMDB.o: $(TARGETDIR_Timberhead) Analyse/ParserIMDB.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/ParserIMDB.cpp
+	
+$(TARGETDIR_Timberhead)/ParserTVDB.o: $(TARGETDIR_Timberhead) Analyse/ParserTVDB.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/ParserTVDB.cpp
 
-$(TARGETDIR_TimberHead)/Parser.o: $(TARGETDIR_TimberHead) Analyse/Parser.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Analyse/Parser.cpp
+$(TARGETDIR_Timberhead)/Personne.o: $(TARGETDIR_Timberhead) Analyse/Personne.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Personne.cpp
 
-$(TARGETDIR_TimberHead)/ApiServer.o: $(TARGETDIR_TimberHead) Network/ApiServer.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Network/ApiServer.cpp
+$(TARGETDIR_Timberhead)/Show.o: $(TARGETDIR_Timberhead) Analyse/Show.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Analyse/Show.cpp
 
-$(TARGETDIR_TimberHead)/Finder.o: $(TARGETDIR_TimberHead) Network/Finder.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ Network/Finder.cpp
+$(TARGETDIR_Timberhead)/ApiServer.o: $(TARGETDIR_Timberhead) Network/ApiServer.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Network/ApiServer.cpp
 
-$(TARGETDIR_TimberHead)/main.o: $(TARGETDIR_TimberHead) main.cpp
-	$(COMPILE.cc) $(CCFLAGS_TimberHead) $(CPPFLAGS_TimberHead) -o $@ main.cpp
+$(TARGETDIR_Timberhead)/Finder.o: $(TARGETDIR_Timberhead) Network/Finder.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Network/Finder.cpp
+	
+$(TARGETDIR_Timberhead)/Search.o: $(TARGETDIR_Timberhead) Thread/Search.cpp
+	$(COMPILE.cc) $(CCFLAGS_Timberhead) $(CPPFLAGS_Timberhead) -o $@ Thread/Search.cpp
 
 
 
 #### Clean target deletes all generated files ####
 clean:
 	rm -f \
-		$(TARGETDIR_TimberHead)/Personne.o \
-		$(TARGETDIR_TimberHead)/Show.o \
-		$(TARGETDIR_TimberHead)/TimberHead32.exe \
-		$(TARGETDIR_TimberHead)/Parser.o \
-		$(TARGETDIR_TimberHead)/ApiServer.o \
-		$(TARGETDIR_TimberHead)/Finder.o \
-		$(TARGETDIR_TimberHead)/main.o
+		$(TARGETDIR_Timberhead)/Timberhead \
+		$(TARGETDIR_Timberhead)/main.o \
+		$(TARGETDIR_Timberhead)/Parser.o \
+		$(TARGETDIR_Timberhead)/ParserIMDB.o \
+		$(TARGETDIR_Timberhead)/ParserTVDB.o \
+		$(TARGETDIR_Timberhead)/Personne.o \
+		$(TARGETDIR_Timberhead)/Show.o \
+		$(TARGETDIR_Timberhead)/ApiServer.o \
+		$(TARGETDIR_Timberhead)/Finder.o \
+		$(TARGETDIR_Timberhead)/Search.o \
 	$(CCADMIN)
 	rm -f -r $(TARGETDIR_TimberHead)
 

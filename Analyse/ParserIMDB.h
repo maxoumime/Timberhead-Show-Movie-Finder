@@ -3,6 +3,7 @@
 #include "Show.h"
 #include "Parser.h"
 #include <string>
+#include "../include/tinyxml2/tinyxml2.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ public:
     ParserIMDB();
     ParserIMDB(const ParserIMDB& orig);
     virtual ~ParserIMDB();
-    static Show parseShow(string);
+    Show parseShow(string);
 private:
 
 };

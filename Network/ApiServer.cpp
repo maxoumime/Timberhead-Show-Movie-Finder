@@ -1,22 +1,27 @@
 #include "APIServer.h"
-#include "Finder.h"
 
 APIServer::APIServer() {}
 
-APIServer::APIServer(string _name, string _apiUrl, string _apiKey) {
+APIServer::APIServer(string _name, string _apiUrl, Parser* _parser) {
     this->name = _name;
-    this->apiKey = _apiKey;
     this->apiUrl = _apiUrl;
+    this->parser = _parser;
 }
 
 APIServer::~APIServer() {
 }
 
-string APIServer::fetch(string path, bool withKey){
+void APIServer::findShow(APIServer* apiServer, string nom, promise<Show>* promise){
+    
+    string xml = Finder::get(apiServer->apiUrl+nom);
+            
+    Show showResult = apiServer->parser->parseShow(xml);
+    promise->set_value(showResult);
+    
+}
 
-
-    if(withKey)
-        return Finder::get(this->apiUrl+this->apiKey+"/"+path);
-    else return Finder::get(this->apiUrl+path);
-
+void APIServer::findShowThread(string nom, promise<Show>* promise){
+   
+    std::thread threadFind(&APIServer::findShow, this, nom, promise);
+    threadFind.detach();
 }
