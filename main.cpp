@@ -18,7 +18,12 @@ int runSearch()
     for(string::iterator it = serie.begin(); it != serie.end(); ++it){
         if(*it == ' ')
             *it = '+';
+        else if(*it == '\t')
+            *it = '+';
     }    
+    
+    cout << serie << endl;
+        
     promise<Show> promiseShow;
     future<Show> futureShow = promiseShow.get_future();
     
