@@ -39,7 +39,7 @@ int App::initializeHome() {
 string App::getRequest()
 {
     string serie;
-    cout << "Entrez le nom de la série recherchée (ou Ctrl-C pour quitter): ";
+    cout << "Entrez le nom de la série ou du film recherchée (ou Ctrl-C pour quitter): ";
     getline(cin, serie);
     return serie;
 }
@@ -67,7 +67,9 @@ void App::displayResult(Show show)
         cout << App::displayInOneLine(columns, "Année ", show.getYear()) << endl;
         cout << App::displayInOneLine(columns, "Durée ", show.getRunTime()) << endl;
         cout << App::displayInOneLine(columns, "Note ", int_to_string(show.getRating())+ "/10") << endl;
-        cout << App::displayInOneLine(columns, "Chaine ", show.getChannel()) << endl;
+        
+        if(!show.getChannel().empty())
+            cout << App::displayInOneLine(columns, "Chaine ", show.getChannel()) << endl;
 
         App::displayTitle("~ Distribution de la série", columns);
         
