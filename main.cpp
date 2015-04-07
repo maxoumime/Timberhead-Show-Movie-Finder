@@ -21,9 +21,7 @@ int runSearch()
         else if(*it == '\t')
             *it = '+';
     }    
-    
-    cout << serie << endl;
-        
+            
     promise<Show> promiseShow;
     future<Show> futureShow = promiseShow.get_future();
     
